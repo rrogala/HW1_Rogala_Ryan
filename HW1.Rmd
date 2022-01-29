@@ -1,0 +1,27 @@
+---
+title: "HW1" 
+author: "Ryan Rogala"
+output: html_document
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+  encoding=encoding,
+  output_file=file.path(dirname(input_file), out_dir, 'index.html'))
+  })
+---
+
+```{r, warning=FALSE}
+# load package from library.  
+library(ggplot2)
+
+# plot data from mtcars. 
+ggplot(data = mtcars, aes(x = hp/wt, y = qsec)) + 
+  geom_point() +
+  geom_smooth(method = "gam", se=FALSE, formula = y ~ s(x, bs = "cs")) +
+  ylab("Quarter-Mile Time (seconds)") +
+  xlab("Horespower to Weight Ratio
+       (lbs in 1,000's)") + 
+  ggtitle("Horespower to weight ratio Vs. quarter-mile time for cars")
+  
+```
+
